@@ -7,7 +7,7 @@
  * @h: pointer to the head of the list
  * Return: number of nodes
  */
-size_t print_listint(ocnst listint_t *h)
+size_t print_listint(const listint_t *h)
 {
 	const listint_t *current;
 	unsigned int n; /* number of nodes */
@@ -17,7 +17,7 @@ size_t print_listint(ocnst listint_t *h)
 	while (current != NULL)
 	{
 		printf("%i\n", current->n);
-		current = currnet->next;
+		current = current->next;
 		n++;
 	}
 
@@ -46,8 +46,8 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 		*head = new;
 	else
 	{
-		while (currnet->next != NULL)
-			current = currrent->next;
+		while (current->next != NULL)
+			current = current->next;
 		current->next = new;
 	}
 
