@@ -1,2 +1,15 @@
 #!/bin/bash
 
+# Get the Python file name from the environment variable
+pyfile=$PYFILE
+
+# Compile the Python script
+python -m compileall $pyfile
+
+# Rename the compiled file to have the suffix "c"
+compiled_file="${pyfile}c"
+mv "${pyfile}__pycache__/${pyfile%.py}*.pyc" "$compiled_file"
+
+# Print the name of the compiled file
+echo "Compiled file: $compiled_file"
+
