@@ -1,15 +1,26 @@
 #!/bin/bash
 
-# Get the Python file name from the environment variable
-pyfile=$PYFILE
+# Get the Python script name from the environment variable
+PYFILE=$PYFILE
 
-# Compile the Python script
-python -m compileall $pyfile
+# Check if the PYFILE variable is set
+if [ -z "$PYFILE" ]; then
+	  echo "Error: PYFILE environment variable is not set."
+	    exit 1
+fi
 
-# Rename the compiled file to have the suffix "c"
-compiled_file="${pyfile}c"
-mv "${pyfile}__pycache__/${pyfile%.py}*.pyc" "$compiled_file"
+# Check if the Python script file exists
+if [ ! -f "$PYFILE" ]; then
+	  echo "Error: Python script file does not exist."
+	    exit 1
+fi
 
-# Print the name of the compiled file
-echo "Compiled file: $compiled_file"
+# Compile the Python script file using the built-in py_compile module
+python -m py_compile "$PYFILE"
+
+# Rename the bytecode file with the .pyc extension
+mv "${PYFILE}c" "${PYFILE%.py}.pyc"
+
+# Print a message to indicate that the compilation is complete
+echo "Compiling ${PYFILE} ..."
 
