@@ -5,6 +5,6 @@ for i in range(0, 10):
         if (i > j) or (i == j):
             continue
         if (i == 8) and (j == 9):
-            print(f"{i}{j}", end = "\n")
+            print("{0}{1}".format(i, j), end="\n")
             break
-        print(f"{i}{j}", end = ", ")
+        print("{0}{1}".format(i, j), end=", ")
