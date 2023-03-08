@@ -1,26 +1,2 @@
 #!/bin/bash
-
-# Get the Python script name from the environment variable
-PYFILE=$PYFILE
-
-# Check if the PYFILE variable is set
-if [ -z "$PYFILE" ]; then
-	  echo "Error: PYFILE environment variable is not set."
-	    exit 1
-fi
-
-# Check if the Python script file exists
-if [ ! -f "$PYFILE" ]; then
-	  echo "Error: Python script file does not exist."
-	    exit 1
-fi
-
-# Compile the Python script file using the built-in py_compile module
-python -m py_compile "$PYFILE"
-
-# Rename the bytecode file with the .pyc extension
-mv "${PYFILE}c" "${PYFILE%.py}.pyc"
-
-# Print a message to indicate that the compilation is complete
-echo "Compiling ${PYFILE} ..."
-
+python3 -m compileall $PYFILE; cp __pycache__/*.pyc "${PYFILE}c"; rm -rf ./__pycache__
