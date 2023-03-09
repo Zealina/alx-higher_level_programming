@@ -12,7 +12,7 @@ if __name__ == '__main__':
     a = int(argv[1])
     b = int(argv[3])
     if argv[2] == '+':
-        print("{} + {} = {}".format(a ,b, calculator_1.add(a ,b)))
+        print("{} + {} = {}".format(a, b, calculator_1.add(a, b)))
     elif argv[2] == '-':
         print("{} - {} = {}".format(a, b, calculator_1.sub(a, b)))
     elif argv[2] == '*':
