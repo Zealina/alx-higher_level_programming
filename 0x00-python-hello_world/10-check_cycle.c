@@ -5,15 +5,15 @@
  *
  * Return: void
  */
-void freeptr(listp_t *head)
+void freeptr(listp_t **head)
 {
 	listp_t *temp;
 
-	while (head)
+	while (*head)
 	{
-		temp = head->next;
-		free(head->ptr);
-		free(head);
+		temp = (*head)->next;
+		free((*head)->ptr);
+		free(*head);
 		head = temp;
 	}
 }
@@ -30,7 +30,7 @@ int check_cycle(listint_t *list)
 
 	temp = list;
 	headptr = NULL;
-	while (temp)
+	while (temp != NULL)
 	{
 		new = malloc(sizeof(listp_t));
 		if (new == NULL)
@@ -46,6 +46,6 @@ int check_cycle(listint_t *list)
 				return (1);
 		}
 	}
-	freeptr(headptr);
+	freeptr(&headptr);
 	return (0);
 }
