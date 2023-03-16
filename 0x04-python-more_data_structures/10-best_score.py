@@ -7,4 +7,5 @@ def best_score(a_dictionary):
     for k in a_dictionary:
         if bs is None or bs < a_dictionary[k]:
             bs = a_dictionary[k]
-    return bs
+            bsn = k
+    return bsn
