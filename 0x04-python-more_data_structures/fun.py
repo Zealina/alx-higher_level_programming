@@ -5,11 +5,7 @@ def roman_to_int(roman_string):
     result = 0
     if roman_string is None or roman_string == "":
         return 0
-    new_list = []
-    for x in roman_string:
-        for k, v in a_dict.items():
-            if k == x:
-                new_list.append(v)
+    new_list = [for x in roman_string for k, v in a_dict.items() v if k == x else continue]
     if len(new_list) % 2 != 0:
         new_list.append(0)
     for n in range(0, len(new_list), 2):
@@ -18,5 +14,3 @@ def roman_to_int(roman_string):
 
         result += (y + x) if y >= x else (x - y)
     return result
-
-
