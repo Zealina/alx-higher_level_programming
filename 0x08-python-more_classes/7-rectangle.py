@@ -10,6 +10,8 @@ class Rectangle:
         height (int): the height of the rectangle
     '''
     number_of_instances = 0
+    print_symbol = '#'
+
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
@@ -54,14 +56,15 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
+        '''String representation of rectangle'''
+        ret_str = ""
         if self.__height == 0 or self.__width == 0:
             return ""
-        rect = []
         for i in range(self.__height):
-            [rect.append('#') for j in range(self.__width)]
-            if i != self.__height - 1:
-                rect.append("\n")
-        return ("".join(rect))
+            ret_str += str(self.print_symbol) * self.__width
+            if i + 1 < self.__height:
+                ret_str += '\n'
+        return ret_str
 
     def __repr__(self):
         '''Returns the string representation of Rectangle'''
