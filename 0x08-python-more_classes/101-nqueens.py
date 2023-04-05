@@ -16,6 +16,7 @@ if size < 4:
     print('N must be at least 4')
     sys.exit(1)
 
+
 class Solution:
     '''
     Example on the left: [1, 3, 0, 2]
@@ -77,6 +78,7 @@ class Solution:
             string = '.' * i + 'Q' + '.' * (n - i - 1)
             ret.append(string)
         return ret
+
 
 sol = Solution()
 solutions = sol.solveNQueens(size)
