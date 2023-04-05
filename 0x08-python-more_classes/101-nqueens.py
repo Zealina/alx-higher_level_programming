@@ -74,12 +74,15 @@ class Solution:
 
     def state_to_string(self, state, n):
         ret = []
+        index = 0
         for i in state:
-            string = '.' * i + 'Q' + '.' * (n - i - 1)
-            ret.append(string)
+            pos1 = [index, i]
+            ret.append(pos1)
+            index += 1
         return ret
 
 
 sol = Solution()
 solutions = sol.solveNQueens(size)
-print(solutions)
+for i in solutions:
+    print(i)
