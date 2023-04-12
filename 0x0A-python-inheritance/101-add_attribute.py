@@ -11,7 +11,9 @@ def add_attribute(obj, name, value):
     Return: Nothing if successful
         Raise a TypeError if unsucessful
     """
-    for i in dir(obj):
-        if i == '__slots__':
-            raise TypeError("can't add new attribute")
-    setattr(obj, name, value)
+
+    if hasattr(obj, "__dict__") or \
+       (hasattr(obj, "__slots__") and name in obj.__slots__):
+        setattr(obj, name, value)
+    else:
+        raise TypeError("can't add new attribute")
