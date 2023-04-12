@@ -11,7 +11,7 @@ def add_attribute(obj, name, value):
     Return: Nothing if successful
         Raise a TypeError if unsucessful
     """
-    try:
-        obj.(name) = value
-    except AttributeError:
-        raise TypeError("can't add new attribute")
+    for i in dir(obj):
+        if i == '__slots__':
+            raise TypeError("can't add new attribute")
+    setattr(obj, name, value)
