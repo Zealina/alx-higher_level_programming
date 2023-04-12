@@ -34,7 +34,7 @@ class Rectangle(BaseGeometry):
         Returns:
             Inherits the returns from superclass BaseGeometry
         """
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
         self.__width = width
         self.__height = height
-        self.integer_validator("width", self.__width)
-        self.integer_validator("height", self.__height)
