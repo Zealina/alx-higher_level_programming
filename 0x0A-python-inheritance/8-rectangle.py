@@ -27,7 +27,13 @@ class BaseGeometry:
 class Rectangle(BaseGeometry):
     """A subclass of BaseGeometry"""
     def __init__(self, width, height):
-        """Instantiation of the rectangle"""
+        """Instantiation of the rectangle
+        Args:
+            width (int): The width of rectangle
+            height (int): The height of rectangle
+        Returns:
+            Inherits the returns from superclass BaseGeometry
+        """
         self.__width = width
         self.__height = height
         self.integer_validator("width", self.__width)
