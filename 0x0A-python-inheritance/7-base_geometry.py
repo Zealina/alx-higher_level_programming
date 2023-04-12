@@ -13,12 +13,12 @@ class BaseGeometry:
         '''Checks if the value is an integer
         Args:
             name (str): The name associated with value
-            value (int) : The value associated with name
+            value (int : The value associated with name
 
         Returns:
             Nothing, just checks for the value of "value
         '''
-        if type(value) is not int:
+        if type(value) != int:
             raise TypeError('{} must be an integer'.format(name))
         if value <= 0:
             raise ValueError('{} must be greater than 0'.format(name))
