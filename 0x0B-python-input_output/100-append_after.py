@@ -9,11 +9,11 @@ def append_after(filename="", search_string="", new_string=""):
         search_string (str): The string to search for
         new_string (str): The string to append after
     '''
-    with open(filename, 'r+', encoding='utf-8') as f:
+    with open(filename, 'r+') as f:
         lines = f.readlines()
         i = 0
         for line in lines:
-            if line.find(search_string) != -1:
+            if line.find(search_string) is not -1:
                 lines.insert(i + 1, new_string)
             i += 1
         f.seek(0)
