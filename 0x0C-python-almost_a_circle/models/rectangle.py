@@ -114,3 +114,9 @@ class Rectangle(Base):
             self.y = args[4]
         except IndexError:
             pass
+
+    def to_dictionary(self):
+        """Represents the class attributes in a dictionaary"""
+        nary = {'x': self.x, 'y': self.y, 'id': self.id,
+                'height': self.height, 'width': self.width}
+        return nary
