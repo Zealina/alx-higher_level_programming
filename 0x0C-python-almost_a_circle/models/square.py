@@ -11,11 +11,22 @@ class Square(Rectangle):
         Rectangle (class): The parent class
     """
     def __init__(self, size, x=0, y=0, id=None):
-        super().__init__(id, x, y, width, height)
+        """Initializations of the class Square"""
+        super().__init__(size, size, x, y, id)
+
+    @property
+    def size(self):
+        """Size getter"""
+        return self.height
+
+    @size.setter
+    def size(self, size):
+        """Size setter"""
+        self.setter_validation("size", size)
         self.width = size
         self.height = size
 
     def __str__(self):
         """String representation of square"""
-        return ("[Square] ({}) ({}/{}) -({}/{})".format
-                (self.id, self.__x, self.__y, self.__width, self.__height))
+        return ("[Square] ({}) {}/{} - {}".format
+                (self.id, self.x, self.y, self.height))
