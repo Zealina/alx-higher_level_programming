@@ -55,3 +55,18 @@ class Base:
         if json_string is None:
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Create an instance of the class
+        Args:
+            dictionary (kwargs): A list of keyworded args as dict
+        Returns:
+            An instance with attributes from dictionary
+        """
+        if cls.__name__ == "Rectangle":
+            instance = cls(1, 1, 1, 1, 1)
+        elif cls.__name__ == "Square":
+            instance = cls(1, 1, 1, 1)
+        instance.update(**dictionary)
+        return instance
