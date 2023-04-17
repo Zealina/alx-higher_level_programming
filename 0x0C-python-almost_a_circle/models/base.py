@@ -43,3 +43,15 @@ class Base:
                 return
             workwith = [work.to_dictionary() for work in list_obj]
             fd.write(cls.to_json_string(workwith))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Convert json string to python code
+        Args:
+            json_string (str): The string to be converted
+        Returns:
+            The converted python code
+        """
+        if json_string is None:
+            return []
+        return json.loads(json_string)
