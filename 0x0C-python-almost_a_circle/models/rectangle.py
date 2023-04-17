@@ -90,7 +90,7 @@ class Rectangle(Base):
         for i in range(self.__y):
             print("")
         for i in range(self.__height):
-            print(' ' * self.__y, end ="")
+            print(' ' * self.__y, end="")
             print("#" * self.__width)
 
     def __str__(self):
@@ -98,12 +98,14 @@ class Rectangle(Base):
         return ('[Rectangle] ({}) {}/{} - {}/{}'.format
                 (self.id, self.__x, self.__y, self.__width, self.__height))
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Update the attributes of the instance
         Args:
             args (int): The arguments to be updated
         """
         if len(args) == 0:
+            for key, value in kwargs.items():
+                self.__setattr__(key, value)
             return
         try:
             self.id = args[0]
