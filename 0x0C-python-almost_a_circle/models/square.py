@@ -47,3 +47,8 @@ class Square(Rectangle):
             self.y = args[3]
         except IndexError:
             pass
+
+    def to_dictionary(self):
+        """Represents square attribute as dictionary"""
+        nary = {'id': self.id, 'size': self.size, 'x': self.x, 'y': self.y}
+        return nary
