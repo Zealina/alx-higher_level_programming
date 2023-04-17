@@ -9,3 +9,8 @@ def pascal_triangle(n):
     '''
     if n <= 0:
         return []
+    elif n = 1:
+        return [1]
+    init = [1, 1]
+    for i :
+        new = 
