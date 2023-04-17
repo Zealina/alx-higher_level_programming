@@ -70,3 +70,13 @@ class Base:
             instance = cls(1)
         instance.update(**dictionary)
         return instance
+
+    @classmethod
+    def load_from_file(cls):
+        """Create an instance from a file"""
+        try:
+            with open(cls.__name__ + ".json", 'r', encoding='utf-8') as fd:
+                json_string = cls.from_json_string(fd.read())
+        except FileNotFoundError:
+            return []
+        return [cls.create(**new) for new in json_string]
