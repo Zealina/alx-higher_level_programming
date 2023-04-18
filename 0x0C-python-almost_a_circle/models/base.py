@@ -3,6 +3,7 @@
 
 
 import json
+import csv
 
 
 class Base:
@@ -80,3 +81,37 @@ class Base:
         except FileNotFoundError:
             return []
         return [cls.create(**new) for new in json_string]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Convert dict to csv and save in file
+        Args:
+            list_objs (list): List of instances
+        """
+        with open(cls.__name__ + ".csv", 'w', encoding='utf-8') as fd:
+            writer = csv.writer(fd)
+            for obj in list_objs:
+                s = cls.to_dictionary(obj)
+                if cls.__name__ == "Rectangle":
+                    rect_list = [s['id'], s['width'],
+                                 s['height'], s['x'], s['y']]
+                elif cls.__name__ == "Square":
+                    rect_list = [s['id'], s['size'], s['x'], s['y']]
+                writer.writerow(rect_list)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Convert csv to dict"""
+        with open(cls.__name__ + ".csv", newline='') as fd:
+            reader = csv.reader(fd)
+            my_list = []
+            for row in reader:
+                s = [int(i) for i in row]
+                if cls.__name__ == "Rectangle":
+                    new_dict = {'id': s[0], 'width': s[1], 'height':s[2],
+                                'x': s[3], 'y': s[4]}
+                if cls.__name__ == "Square":
+                    new_dict = {'id': s[0], 'size': s[1], 'x': s[2],
+                                'y': s[3]}
+                my_list.append(new_dict)
+                return [cls.create(**new) for new in my_list]
