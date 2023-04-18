@@ -89,6 +89,8 @@ class Base:
             list_objs (list): List of instances
         """
         with open(cls.__name__ + ".csv", 'w', encoding='utf-8') as fd:
+            if list_objs is None:
+                return
             writer = csv.writer(fd)
             for obj in list_objs:
                 s = cls.to_dictionary(obj)
@@ -102,16 +104,19 @@ class Base:
     @classmethod
     def load_from_file_csv(cls):
         """Convert csv to dict"""
-        with open(cls.__name__ + ".csv", newline='') as fd:
-            reader = csv.reader(fd)
-            my_list = []
-            for row in reader:
-                s = [int(i) for i in row]
-                if cls.__name__ == "Rectangle":
-                    new_dict = {'id': s[0], 'width': s[1], 'height':s[2],
-                                'x': s[3], 'y': s[4]}
-                if cls.__name__ == "Square":
-                    new_dict = {'id': s[0], 'size': s[1], 'x': s[2],
-                                'y': s[3]}
-                my_list.append(new_dict)
+        try:
+            with open(cls.__name__ + ".csv", newline='') as fd:
+                reader = csv.reader(fd)
+                my_list = []
+                for row in reader:
+                    s = [int(i) for i in row]
+                    if cls.__name__ == "Rectangle":
+                        new_dict = {'id': s[0], 'width': s[1], 'height': s[2],
+                                    'x': s[3], 'y': s[4]}
+                    if cls.__name__ == "Square":
+                        new_dict = {'id': s[0], 'size': s[1], 'x': s[2],
+                                    'y': s[3]}
+                    my_list.append(new_dict)
                 return [cls.create(**new) for new in my_list]
+        except FileNotFoundError:
+            return []
