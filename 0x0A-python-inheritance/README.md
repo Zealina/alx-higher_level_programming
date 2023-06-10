@@ -1,1 +1,1 @@
-Inheritance and stuff
+Introduction to python inheritance
