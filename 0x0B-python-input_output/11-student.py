@@ -36,4 +36,4 @@ class Student:
         Reload the values of the instance from the json dict
         """
         for key, value in json.items():
-            self.key = value
+            setattr(self, key, value)
