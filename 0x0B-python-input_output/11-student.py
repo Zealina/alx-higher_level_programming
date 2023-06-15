@@ -36,5 +36,4 @@ class Student:
         Reload the values of the instance from the json dict
         """
         for key, value in json.items():
-            if key in self.__dict__:
-                self.key = value
+            self.key = value
