@@ -91,7 +91,7 @@ class Rectangle(base.Base):
         """
         String reprepsentation of the Instance 'Rectangle'
         """
-        return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x,
+        return ("[Rectangle] ({}) {}/{} - {}/{}]".format(self.id, self.x,
                 self.y, self.width, self.height))
 
     def update(self, *args, **kwargs):
