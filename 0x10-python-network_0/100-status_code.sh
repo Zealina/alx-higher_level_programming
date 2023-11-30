@@ -1,3 +1,3 @@
 #!/bin/bash
 # Return the status code
-curl -sw "%{response_code}" "$1"
+curl -s -o /dev/null -w "%{response_code}" "$1"
