@@ -1,22 +1,25 @@
 #!/usr/bin/node
 
 const request = require('request');
+const { promisify } = require('util');
 
-const filmUrl = 'https://swapi-api.alx-tools.com/api/films/' + process.argv[2];
-request(filmUrl, async function (err, response, body) {
-  if (err) {
-    console.error(err);
-  } else {
-    const chars = JSON.parse(body).characters;
+const promisifiedRequest = promisify(request);
+
+const fetchData = async () => {
+  const filmUrl = 'https://swapi-api.alx-tools.com/api/films/' + process.argv[2];
+
+  try {
+    const filmResponse = await promisifiedRequest(filmUrl);
+    const chars = JSON.parse(filmResponse.body).characters;
+
     for (let i = 0; i < chars.length; i++) {
-      await request(chars[i], function (err, response, body) {
-        if (err) {
-          console.error(err);
-        } else {
-          body = JSON.parse(body);
-          console.log(body.name);
-        }
-      });
+      const charResponse = await promisifiedRequest(chars[i]);
+      const character = JSON.parse(charResponse.body);
+      console.log(character.name);
     }
+  } catch (err) {
+    console.error(err);
   }
-});
+};
+
+fetchData();
